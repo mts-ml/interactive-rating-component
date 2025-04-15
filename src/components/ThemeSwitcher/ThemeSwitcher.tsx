@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
 
@@ -8,21 +8,26 @@ const TOGGLE_CLASSES =
 
 
 const SliderToggle = () => {
-   const [darkTheme, setDarkTheme] = useState(false)
+   const [darkTheme, setDarkTheme] = useState(() => {
+      const savedTheme = localStorage.getItem("darkTheme")
+
+      return savedTheme !== null ? JSON.parse(savedTheme) as boolean : false
+   })
+
+   useEffect(() => {
+      const root = document.documentElement
+
+      if (darkTheme) {
+         root.classList.add("dark")
+      } else {
+         root.classList.remove("dark")
+      }
+
+      localStorage.setItem("darkTheme", JSON.stringify(darkTheme))
+   }, [darkTheme])
 
    function handleThemeSwitcher() {
-      setDarkTheme(prevTheme => {
-         const newTheme = !prevTheme;
-         const root = document.documentElement
-
-         if (newTheme) {
-            root.classList.add('dark')
-         } else {
-            root.classList.remove('dark')
-         }
-
-         return newTheme;
-      })
+      setDarkTheme(prevTheme => !prevTheme)
    }
 
 
