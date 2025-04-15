@@ -3,7 +3,6 @@ import { useState } from 'react'
 import star from '../../assets/images/icon-star.svg'
 import ratingPicture from '../../assets/images/illustration-thank-you.svg'
 import SliderToggle from '../ThemeSwitcher/ThemeSwitcher'
-import { div } from 'framer-motion/client'
 
 
 export const Rating: React.FC = () => {
