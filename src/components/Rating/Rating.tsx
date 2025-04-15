@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import star from '../../assets/images/icon-star.svg'
 import ratingPicture from '../../assets/images/illustration-thank-you.svg'
+import SliderToggle from '../ThemeSwitcher/ThemeSwitcher'
+import { div } from 'framer-motion/client'
 
 
 export const Rating: React.FC = () => {
@@ -12,19 +14,21 @@ export const Rating: React.FC = () => {
 
 
    return (
-      <>
+      <div className='relative'>
+         <SliderToggle />
+
          {!submitted ?
             (
-               <main className="bg-gray-900 rounded-lg mx-7 my-7 max-w-lg px-7 py-9">
+               <main className="dark:bg-gray-900 bg-[#cecece] rounded-lg mx-7 my-7 max-w-lg px-7 py-9">
                   <img
                      src={star}
                      alt="Decorative Star"
-                     className='inline-block bg-white/5 rounded-full p-3'
+                     className='inline-block bg-black/5 dark:bg-white/5 rounded-full p-3'
                   />
 
-                  <h1 className='text-2xl text-white font-bold my-5'>How did we do?</h1>
+                  <h1 className='text-2xl text-gray-950 dark:text-white font-bold my-5'>How did we do?</h1>
 
-                  <p className='text-white opacity-70 leading-6'>
+                  <p className='dark:text-white opacity-70 leading-6'>
                      Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!
                   </p>
 
@@ -53,24 +57,24 @@ export const Rating: React.FC = () => {
                   </button>
                </main>
             ) : (
-               <main className='bg-gray-900 rounded-lg mx-7 my-7 max-w-lg px-7 py-9'>
+               <main className='bg-[#cecece] dark:bg-gray-900 rounded-lg mx-7 my-7 max-w-lg px-7 py-9'>
                   <img
-                     className='block mx-auto'
+                     className='block mx-auto my-6'
                      src={ratingPicture}
                      alt="Credit card machine printing paper and simulating a card swipe."
                   />
 
-                  <h2 className='text-primary-500 bg-white/5 opacity-80 rounded-xl mx-auto my-7 w-48 py-1 px-4 text-center'>
+                  <h2 className='text-primary-500 bg-black/80 dark:bg-white/5 opacity-80 rounded-xl mx-auto my-7 w-48 py-1 px-4 text-center'>
                      You selected {grade} out of 5
                   </h2>
 
-                  <p className='text-3xl font-medium text-white text-center my-3'>Thank you!</p>
+                  <p className='text-3xl font-medium text-gray-950 dark:text-white text-center my-3'>Thank you!</p>
 
-                  <p className='text-white text-center opacity-70 font-light leading-6'>
+                  <p className='text-gray-950 dark:text-white text-center opacity-70 font-light leading-6'>
                      We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch!
                   </p>
                </main>
             )}
-      </>
+      </div>
    )
 }
